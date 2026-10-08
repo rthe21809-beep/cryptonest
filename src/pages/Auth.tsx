@@ -9,6 +9,10 @@ import { cn } from '../lib/utils'
 
 type Mode = 'signin' | 'signup'
 
+const MOTION_INITIAL = { opacity: 0, y: 20, scale: 0.985 }
+const MOTION_ANIMATE = { opacity: 1, y: 0, scale: 1 }
+const MOTION_TRANSITION = { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+
 export default function Auth() {
   const [mode, setMode] = useState<Mode>('signup')
   const [name, setName] = useState('')
@@ -24,6 +28,11 @@ export default function Auth() {
   const [params] = useSearchParams()
   const ref = params.get('ref') ?? undefined
   const from = (location.state as any)?.from ?? '/app'
+
+  const switchMode = (m: Mode) => {
+    setMode(m)
+    setError(null)
+  }
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,14 +57,13 @@ export default function Auth() {
         <div className="absolute -right-24 bottom-0 h-[420px] w-[420px] rounded-full bg-pastel-lavender/[0.09] blur-[130px]" />
       </div>
 
-      <motion.div initial={{ opacity: 0, y: 20, scale: 0.985 }} animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}} className="relative w-full max-w-md">
+      <motion.div initial={MOTION_INITIAL} animate={MOTION_ANIMATE} transition={MOTION_TRANSITION} className="relative w-full max-w-md">
         <div className="mb-8 flex justify-center"><Logo /></div>
 
         <div className="glass overflow-hidden p-7 sm:p-8">
           <div className="mb-6 flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1">
             {(['signup', 'signin'] as const).map((m) => (
-              <button key={m} onClick={() => { setMode(m); setError(null) }}} className={cn('flex-1 rounded-full py-2 text-[12.5px] font-medium transition-all duration-300', mode === m ? 'bg-white text-ink-950' : 'text-white/50')}>
+              <button key={m} onClick={() => switchMode(m)} className={cn('flex-1 rounded-full py-2 text-[12.5px] font-medium transition-all duration-300', mode === m ? 'bg-white text-ink-950' : 'text-white/50')}>
                 {m === 'signup' ? 'Create account' : 'Sign in'}
               </button>
             ))}
@@ -92,11 +100,11 @@ export default function Auth() {
             </div>
             {error && <p className="rounded-xl border border-pastel-blush/25 bg-pastel-blush/10 px-3.5 py-2.5 text-[12.5px] text-pastel-blush">{error}</p>}
             <Button type="submit" variant="amber" className="w-full justify-center" disabled={busy}>
-              {busy ? 'Working…' : (isSignup ? 'Create my nest' : 'Sign in')} <ArrowRight size={15} weight="bold" />
+              {busy ? 'Working...' : (isSignup ? 'Create my nest' : 'Sign in')} <ArrowRight size={15} weight="bold" />
             </Button>
           </form>
 
-          <p className="mt-5 text-center text-[11.5px] leading-relaxed text-white/35">Demo authentication — everything is stored locally in your browser.</p>
+          <p className="mt-5 text-center text-[11.5px] leading-relaxed text-white/35">Demo authentication - everything is stored locally in your browser.</p>
         </div>
 
         <p className="mt-6 text-center text-[12.5px] text-white/35"><Link to="/">Back to home</Link></p>
