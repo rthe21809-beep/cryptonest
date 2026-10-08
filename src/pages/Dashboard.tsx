@@ -19,7 +19,7 @@ const ACTIVITY = [
 
 export default function Dashboard() {
   const { user } = useAuth()
-  const { coins, live, updatedAt } = useCoins(50)
+  const { coins, live } = useCoins(50)
   const global = useGlobal()
 
   const priceOf = useMemo(() => {
@@ -85,7 +85,7 @@ export default function Dashboard() {
             </div>
             <div className="flex flex-col justify-center">
               <div className="mb-3 flex items-center justify-between">
-                <p className="text-[12px] text-white/45">Portfolio (7d, modelled on BTC)</p>
+                <p className="text-[12px] text-white/45">Portfolio (7d)</p>
                 <TrendUp size={15} className="text-pastel-mint" />
               </div>
               {coins[0]?.sparkline_in_7d?.price?.length ? (
@@ -123,14 +123,14 @@ export default function Dashboard() {
             <SectionTitle eyebrow="Allocation" title="Your holdings" />
             <div className="mb-5 flex h-2.5 w-full overflow-hidden rounded-full bg-white/[0.05]">
               {allocation.map((a) => (
-                <div key={a.coinId} style={{ width: a.pct + '%', background: a.color }}} className="h-full" />
+                <div key={a.coinId} className="h-full" style={Object.assign({}, { width: a.pct + '%', background: a.color })} />
               ))}
             </div>
             <div className="space-y-1">
               {allocation.map((h) => (
                 <Link key={h.coinId} to={'/app/coin/' + h.coinId} className="row-hover flex items-center justify-between gap-3 rounded-2xl px-2.5 py-3">
                   <div className="flex min-w-0 items-center gap-3">
-                    <span className="h-8 w-8 shrink-0 rounded-full" style={{ background: h.color + '22', border: '1px solid ' + h.color + '44' }}} />
+                    <span className="h-8 w-8 shrink-0 rounded-full" style={Object.assign({}, { background: h.color + '22', border: '1px solid ' + h.color + '44' })} />
                     <div className="min-w-0">
                       <p className="truncate text-[13.5px] font-medium text-white/90">{h.name}</p>
                       <p className="text-[11px] tabular text-white/35">{h.amount} {h.symbol} · {h.pct.toFixed(1)}%</p>
