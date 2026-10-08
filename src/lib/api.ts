@@ -1,9 +1,10 @@
 import type { Coin } from './types'
 import { MOCK_COINS, mockSparkline } from './mockData'
 
-const BASE = 'https://[api.coingecko.com/api/v3'
+const HOST = 'api.coingecko.com'
+const BASE = 'https://' + HOST + '/api/v3'
 
-async](https://api.coingecko.com/api/v3/u0027/n/nasync) function fetchJson<T>(url: string, timeoutMs = 8000): Promise<T> {
+async function fetchJson<T>(url: string, timeoutMs = 8000): Promise<T> {
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), timeoutMs)
   try {
