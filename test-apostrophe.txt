@@ -1,3 +1,0 @@
-const s = 'hello';
-// it's a test
-import { cn } from '../lib/utils';
