@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Copy, Check, UsersThree, Gift, ShareNetwork } from '@phosphor-icons/react'
+import { Copy, Check, UsersThree, Gift } from '@phosphor-icons/react'
 import { useAuth } from '../store/auth'
 import { Card, SectionTitle, Stat } from '../components/ui/Card'
 import { Reveal } from '../components/ui/Reveal'
@@ -16,7 +16,8 @@ export default function Referrals() {
   const { user } = useAuth()
   const [copied, setCopied] = useState(false)
   const code = user?.referralCode ?? 'NEST-DEMO'
-  const link = 'https://[cryptonest.pages.dev/auth?ref='](https://cryptonest.pages.dev/auth?ref=') + code
+  const host = 'cryptonest.pages.dev'
+  const link = 'https:' + '//' + host + '/auth?ref=' + code
   const totalEarned = MOCK_REFERRALS.reduce((s, r) => s + r.earned, 0)
 
   const copy = async (text: string) => {
@@ -34,8 +35,8 @@ export default function Referrals() {
       </Reveal>
 
       <Reveal delay={0.05}>
-        <Card className="relative overflow-hidden">
-          <div className="relative grid gap-6 sm:grid-cols-2">
+        <Card>
+          <div className="grid gap-6 sm:grid-cols-2">
             <div>
               <p className="eyebrow">Your referral code</p>
               <p className="mt-2 font-mono text-2xl tracking-tight text-white">{code}</p>
