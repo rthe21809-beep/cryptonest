@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Plus, ArrowDown, ArrowUp, Copy, Check } from '@phosphor-icons/react'
 import { useCoins } from '../hooks/useCoins'
 import { MOCK_HOLDINGS } from '../lib/mockData'
-import { formatCurrency, formatPercent, shorten } from '../lib/format'
+import { formatCurrency, shorten } from '../lib/format'
 import { Card, SectionTitle, Stat } from '../components/ui/Card'
 import { Reveal } from '../components/ui/Reveal'
 import { Button } from '../components/ui/Button'
@@ -75,7 +75,7 @@ export default function Wallet() {
             {rows.map((h) => (
               <Link key={h.coinId} to={'/app/coin/' + h.coinId} className="row-hover flex items-center justify-between gap-3 rounded-2xl px-2.5 py-3">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="h-9 w-9 shrink-0 rounded-2xl" style={{ background: h.color + '1f', border: '1px solid ' + h.color + '3d' }}} />
+                  <span className="h-9 w-9 shrink-0 rounded-2xl" style={{ background: h.color + '1f', border: '1px solid ' + h.color + '3d' }} />
                   <div className="min-w-0">
                     <p className="truncate text-[13.5px] font-medium text-white/90">{h.name}</p>
                     <p className="text-[11px] tabular text-white/35">{h.amount} {h.symbol} @ {formatCurrency(h.avgBuyPrice)}</p>

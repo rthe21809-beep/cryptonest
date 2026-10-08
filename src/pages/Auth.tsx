@@ -48,7 +48,7 @@ export default function Auth() {
         <div className="absolute -right-24 bottom-0 h-[420px] w-[420px] rounded-full bg-pastel-lavender/[0.09] blur-[130px]" />
       </div>
 
-      <motion.div initial={{ opacity: 0, y: 20, scale: 0.985 }} animate={{ opacity: 1, y: 0, scale: 1 }}}
+      <motion.div initial={{ opacity: 0, y: 20, scale: 0.985 }} animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}} className="relative w-full max-w-md">
         <div className="mb-8 flex justify-center"><Logo /></div>
 
