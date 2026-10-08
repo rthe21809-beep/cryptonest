@@ -60,14 +60,13 @@ export default function Dashboard() {
           <div className="flex items-center gap-2 text-[12px] text-white/40">
             <span className={cn('h-1.5 w-1.5 rounded-full', live ? 'bg-pastel-mint' : 'bg-amber-glow')} />
             {live ? 'Live prices' : 'Offline data'}
-            {updatedAt > 0 && <span className="text-white/25">· {timeAgo(updatedAt)}</span>}
           </div>
         </div>
       </Reveal>
 
       <Reveal delay={0.05}>
-        <Card className="relative overflow-hidden">
-          <div className="relative grid gap-6 lg:grid-cols-2">
+        <Card>
+          <div className="grid gap-6 lg:grid-cols-2">
             <div>
               <p className="eyebrow">Total balance</p>
               <p className="mt-2 text-4xl font-light tabular tracking-tight text-white sm:text-5xl">{formatCurrency(portfolio.total)}</p>
@@ -76,7 +75,6 @@ export default function Dashboard() {
                   <ArrowUpRight size={13} weight="bold" />
                   {formatCurrency(Math.abs(portfolio.pnl))} ({formatPercent(portfolio.pnlPct)})
                 </span>
-                <span className="text-[12px] text-white/35">all time</span>
               </div>
               <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 <Stat label="Invested" value={formatCurrency(portfolio.cost, { compact: true })} />
@@ -122,7 +120,7 @@ export default function Dashboard() {
       <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <Reveal delay={0.1}>
           <Card>
-            <SectionTitle eyebrow="Allocation" title="Your holdings" action={<Link to="/app/wallet" className="text-[12px] font-medium text-amber-glow">Manage →</Link>} />
+            <SectionTitle eyebrow="Allocation" title="Your holdings" />
             <div className="mb-5 flex h-2.5 w-full overflow-hidden rounded-full bg-white/[0.05]">
               {allocation.map((a) => (
                 <div key={a.coinId} style={{ width: a.pct + '%', background: a.color }}} className="h-full" />
