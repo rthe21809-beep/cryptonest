@@ -1,4 +1,4 @@
-import type { Coin, Candle } from './types'
+import type { Coin } from './types'
 import { MOCK_COINS, mockSparkline } from './mockData'
 
 const BASE = 'https://[api.coingecko.com/api/v3'
