@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
@@ -10,6 +9,7 @@ export default {
         amber: { glow: '#F5B544', soft: '#FFD79A' },
         pastel: { mint: '#A8E6CF', lavender: '#C7B9FF', peach: '#FFD3B6', sky: '#A8D8EA', blush: '#FFAAA5' }
       },
+      opacity: { 8: '0.08', 12: '0.12', 16: '0.16', 18: '0.18', 22: '0.22' },
       borderRadius: { '4xl': '2rem' },
       boxShadow: { glass: '0 8px 32px rgba(0,0,0,0.28)', glow: '0 12px 40px -12px rgba(245,181,68,0.35)' }
     }
